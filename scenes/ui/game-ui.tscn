@@ -3,47 +3,62 @@
 [ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui.gd" id="1_0uh32"]
 [ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game-button.tscn" id="1_c63vp"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uh32"]
+bg_color = Color(0, 0.12941177, 0.007843138, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4qo6"]
+bg_color = Color(0, 0.8098417, 0.2225225, 1)
+
 [node name="GameUi" type="CanvasLayer" unique_id=209699471]
 script = ExtResource("1_0uh32")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1787842145]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1963547495]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0uh32")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1787842145]
+layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1726796249]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1726796249]
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer" unique_id=173651554]
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=173651554]
 layout_mode = 2
 
-[node name="XScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer" unique_id=1125363999]
+[node name="XScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1125363999]
 unique_name_in_owner = true
 layout_mode = 2
 text = "X: 0"
 
-[node name="OScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer" unique_id=619267789]
+[node name="OScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=619267789]
 unique_name_in_owner = true
 layout_mode = 2
 text = "O: 0"
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/HFlowContainer" unique_id=2011159046]
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=2011159046]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="TurnLabel" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/HFlowContainer" unique_id=1637222362]
+[node name="TurnLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/HFlowContainer" unique_id=1637222362]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Player %s turn"
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1533961924]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=910303959]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_o4qo6")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=1533961924]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -51,47 +66,47 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 3
 
-[node name="Btn0" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=670995734 instance=ExtResource("1_c63vp")]
+[node name="Btn0" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=670995734 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn1" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1098943949 instance=ExtResource("1_c63vp")]
+[node name="Btn1" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=1098943949 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn2" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=742229139 instance=ExtResource("1_c63vp")]
+[node name="Btn2" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=742229139 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn3" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=860498333 instance=ExtResource("1_c63vp")]
+[node name="Btn3" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=860498333 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn4" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=2050150312 instance=ExtResource("1_c63vp")]
+[node name="Btn4" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=2050150312 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn5" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=105690544 instance=ExtResource("1_c63vp")]
+[node name="Btn5" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=105690544 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn6" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=308798299 instance=ExtResource("1_c63vp")]
+[node name="Btn6" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=308798299 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn7" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1483565893 instance=ExtResource("1_c63vp")]
+[node name="Btn7" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=1483565893 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
-[node name="Btn8" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=626269104 instance=ExtResource("1_c63vp")]
+[node name="Btn8" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=626269104 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
