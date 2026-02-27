@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dm5feshb4s0pj"]
+
+[ext_resource type="PackedScene" uid="uid://b3rs54djx0x63" path="res://scenes/ui/game-ui.tscn" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://46m7iq1m4kha" path="res://scenes/managers/game_manager.tscn" id="1_iuonh"]
+[ext_resource type="Script" uid="uid://5s7sa14jk78r" path="res://scenes/main/main.gd" id="1_k2fmo"]
+
+[node name="Main" type="Node" unique_id=553093518]
+script = ExtResource("1_k2fmo")
+
+[node name="GameManager" parent="." unique_id=244457677 instance=ExtResource("1_iuonh")]
+
+[node name="GameUi" parent="." unique_id=209699471 instance=ExtResource("1_hyk8p")]
+
+[connection signal="game_over" from="GameManager" to="." method="_on_game_manager_game_over"]
+[connection signal="btn_pressed" from="GameUi" to="." method="_on_game_ui_btn_pressed"]

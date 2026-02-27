@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://b3rs54djx0x63"]
+
+[ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui.gd" id="1_0uh32"]
+[ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game-button.tscn" id="1_c63vp"]
+
+[node name="GameUi" type="CanvasLayer" unique_id=209699471]
+script = ExtResource("1_0uh32")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1787842145]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1726796249]
+layout_mode = 2
+
+[node name="TurnLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1637222362]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player %s turn"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1533961924]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="Btn0" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=670995734 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn1" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1098943949 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn2" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=742229139 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn3" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=860498333 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn4" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=2050150312 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn5" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=105690544 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn6" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=308798299 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn7" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1483565893 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+
+[node name="Btn8" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=626269104 instance=ExtResource("1_c63vp")]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""

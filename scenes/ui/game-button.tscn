@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c5qlsm6g8yg7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wueub"]
+bg_color = Color(0, 0.8235294, 0.11764706, 0.2901961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwpw1"]
+bg_color = Color(0, 0.7242498, 0.23769051, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyheb"]
+bg_color = Color(0, 0.7254902, 0.23921569, 1)
+
+[node name="GameButton" type="Button" unique_id=670995734]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 150.0
+offset_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_wueub")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwpw1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gyheb")
+text = "O"
