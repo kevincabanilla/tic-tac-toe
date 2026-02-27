@@ -40,10 +40,11 @@ func change_player(current_player: Enums.Player) -> void:
 	%TurnLabel.text = "Player %s turn." % ("X" if current_player == Enums.Player.X else "O")
 
 
-func _on_btn_pressed(row: int, col: int, btn: Button) -> void:
-	btn.text = player_symbol
-	btn.disabled = true
+func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
 	var color = (Color("#5bd170") if game_manager.current_player == Enums.Player.X else Color("5ac1f7ff"))
 	btn.add_theme_color_override("font_disabled_color", color)
+	btn.text = player_symbol
+	btn.play_animation()
+	btn.disabled = true
 	game_manager.determine_winner(row, col)
 	change_player(game_manager.current_player)
