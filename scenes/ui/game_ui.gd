@@ -29,6 +29,10 @@ func initialize() -> void:
 			button.text = ""
 			button.disabled = false
 
+func update_score(x_score: int, o_score: int) -> void:
+	%XScoreLabel.text = "X: %s" % x_score
+	%OScoreLabel.text = "O: %s" % o_score
+
 
 func change_player(current_player: Enums.Player) -> void:
 	current_player = current_player
