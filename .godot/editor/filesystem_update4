@@ -1,11 +1,6 @@
-res://scenes/ui/game-button.tscn
-res://scenes/ui/game-ui.tscn
+res://scenes/managers/score_manager.tscn
+res://scenes/managers/score_manager.gd
 res://scenes/main/main.tscn
-res://scenes/ui/game_ui.gd
-res://scenes/managers/game_manager.tscn
-res://scenes/managers/game_manager.gd
 res://scenes/main/main.gd
-res://scenes/ui/game_menu.tscn
-res://scenes/ui/game_menu.gd
-res://resources/player_enum.gd
-res://scripts/enums.gd
+res://scenes/ui/game-ui.tscn
+res://scenes/ui/game_ui.gd
