@@ -11,6 +11,7 @@ var player_symbol = ""
 
 func _ready() -> void:
 	initialize()
+	print("game_ui initialized.")
 	%Btn0.pressed.connect(_on_btn_pressed.bind(0,0, %Btn0))
 	%Btn1.pressed.connect(_on_btn_pressed.bind(0,1, %Btn1))
 	%Btn2.pressed.connect(_on_btn_pressed.bind(0,2, %Btn2))
