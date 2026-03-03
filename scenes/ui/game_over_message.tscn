@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dd7p321ytiu8f"]
+
+[ext_resource type="Script" uid="uid://uvptdppb86lj" path="res://scenes/ui/game_over_message.gd" id="1_akquj"]
+
+[sub_resource type="Animation" id="Animation_osycc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_akquj"]
+resource_name = "scale_animation"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.45),
+"transitions": PackedFloat32Array(2, -2, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6yh3"]
+_data = {
+&"RESET": SubResource("Animation_osycc"),
+&"scale_animation": SubResource("Animation_akquj")
+}
+
+[node name="GameOverMessage" type="VBoxContainer" unique_id=596680548]
+offset_left = -100.0
+offset_top = -134.0
+offset_right = 100.0
+offset_bottom = 134.0
+pivot_offset = Vector2(100, 134)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("1_akquj")
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="." unique_id=1017734616]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+alignment = 1
+
+[node name="XLabel" type="Label" parent="HFlowContainer2" unique_id=100834715]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.35686275, 0.81960785, 0.4392157, 1)
+theme_override_font_sizes/font_size = 136
+text = "X"
+horizontal_alignment = 1
+
+[node name="OLabel" type="Label" parent="HFlowContainer2" unique_id=504697076]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.3529412, 0.75686276, 0.96862745, 1)
+theme_override_font_sizes/font_size = 136
+text = "O"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1674994309]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "WINNER!"
+horizontal_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=658293206]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/h_separation = 30
+alignment = 1
+
+[node name="PlayerX" type="Button" parent="HFlowContainer" unique_id=140529413]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "X"
+
+[node name="PlayerO" type="Button" parent="HFlowContainer" unique_id=179001622]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "O
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1600577183]
+libraries/ = SubResource("AnimationLibrary_n6yh3")
+autoplay = &"scale_animation"

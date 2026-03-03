@@ -11,6 +11,7 @@ var player_symbol = ""
 
 func _ready() -> void:
 	initialize()
+	print("game_ui initialized.")
 	%Btn0.pressed.connect(_on_btn_pressed.bind(0,0, %Btn0))
 	%Btn1.pressed.connect(_on_btn_pressed.bind(0,1, %Btn1))
 	%Btn2.pressed.connect(_on_btn_pressed.bind(0,2, %Btn2))
@@ -40,8 +41,11 @@ func change_player(current_player: Enums.Player) -> void:
 	%TurnLabel.text = "Player %s turn." % ("X" if current_player == Enums.Player.X else "O")
 
 
-func _on_btn_pressed(row: int, col: int, btn: Button) -> void:
+func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
+	var color = (Color("#5bd170") if game_manager.current_player == Enums.Player.X else Color("5ac1f7ff"))
+	btn.add_theme_color_override("font_disabled_color", color)
 	btn.text = player_symbol
+	btn.play_animation()
 	btn.disabled = true
 	game_manager.determine_winner(row, col)
 	change_player(game_manager.current_player)

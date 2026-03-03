@@ -1,7 +1,7 @@
 extends Node
 class_name GameManager
 
-var current_player: Enums.Player
+var current_player: Enums.Player = Enums.Player.X
 var rows: Array
 var cols: Array
 var main_diag: int
@@ -12,7 +12,8 @@ signal game_over(winner: Enums.Player)
 signal game_draw()
 
 func _ready() -> void:
-	initialize(Enums.Player.X)
+	initialize()
+	print("game_manager initialized.")
 
 func determine_winner(row:int, col:int) -> void:
 	var value = current_player as int
@@ -30,14 +31,14 @@ func determine_winner(row:int, col:int) -> void:
 		game_over.emit(current_player)
 	elif moves == 9:
 		game_draw.emit()
-	else:
-		current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
+	#else:
+	current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
 
 
-func initialize(player: Enums.Player) -> void:
+func initialize() -> void:
 	rows = [0,0,0]
 	cols = [0,0,0]
 	main_diag = 0
 	anti_diag = 0
 	moves = 0
-	current_player = player
+	#current_player = (current_player if current_player != null else Enums.Player.X)
