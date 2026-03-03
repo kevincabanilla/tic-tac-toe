@@ -5,7 +5,6 @@ extends Node
 @onready var game_manager = $GameManager
 @onready var score_manager = $ScoreManager
 @onready var game_ui = $GameUi
-@onready var game_menu = $GameMenu
 
 func create_game_menu_instance() -> GameMenu:
 	var game_menu_instance = game_menu_scene.instantiate() as  GameMenu
