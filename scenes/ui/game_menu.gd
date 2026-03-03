@@ -1,30 +1,33 @@
 extends CanvasLayer
 class_name GameMenu
 
+@export var game_over_message_scene: PackedScene
+
+@onready var center_container = %CenterContainer
+
 signal start_game()
 
-func set_message(text: String) -> void:
-	%Label.text = text
 
 func show_winner(winner: Enums.Player) -> void:
-	set_message("WINNER!")
-	%XLabel.visible = winner == Enums.Player.X
-	%OLabel.visible = winner == Enums.Player.O
+	visible = true
+	var game_over_instance = game_over_message_scene.instantiate() as GameOverMessage
+	center_container.add_child(game_over_instance)
+	game_over_instance.msg_label.text = "WINNER!"
+	game_over_instance.x_label.visible = winner == Enums.Player.X
+	game_over_instance.o_label.visible = winner == Enums.Player.O
 	
 
 func show_draw() -> void:
-	set_message("DRAW!")
-	%XLabel.visible = true
-	%OLabel.visible = true
-
-#func _on_player_x_pressed() -> void:
-	#start_game.emit(Enums.Player.X)
-#
-#
-#func _on_player_o_pressed() -> void:
-	#start_game.emit(Enums.Player.O)
+	visible = true
+	var game_over_instance = game_over_message_scene.instantiate() as GameOverMessage
+	center_container.add_child(game_over_instance)
+	game_over_instance.msg_label.text = "DRAW!"
+	game_over_instance.x_label.visible = true
+	game_over_instance.o_label.visible = true
 
 
 func _on_panel_container_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
+		visible = false
+		center_container.get_child(0).queue_free()
 		start_game.emit()

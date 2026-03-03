@@ -1,17 +1,11 @@
 [gd_scene format=3 uid="uid://8y1snlyqkspj"]
 
 [ext_resource type="Script" uid="uid://87mkkkeused" path="res://scenes/ui/game_menu.gd" id="1_5s0hc"]
-
-[sub_resource type="Animation" id="Animation_5s0hc"]
-resource_name = "result_animation"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tup5k"]
-_data = {
-&"result_animation": SubResource("Animation_5s0hc")
-}
+[ext_resource type="PackedScene" uid="uid://dd7p321ytiu8f" path="res://scenes/ui/game_over_message.tscn" id="2_tup5k"]
 
 [node name="GameMenu" type="CanvasLayer" unique_id=1896866833]
 script = ExtResource("1_5s0hc")
+game_over_message_scene = ExtResource("2_tup5k")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1763147287]
 anchors_preset = 15
@@ -26,69 +20,7 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer" unique_id=27314204]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/CenterContainer" unique_id=1857564857]
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="HFlowContainer2" type="HFlowContainer" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1168763921]
-layout_mode = 2
-theme_override_constants/h_separation = 8
-alignment = 1
-
-[node name="XLabel" type="Label" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer/HFlowContainer2" unique_id=516208191]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.35686275, 0.81960785, 0.4392157, 1)
-theme_override_font_sizes/font_size = 136
-text = "X"
-horizontal_alignment = 1
-
-[node name="OLabel" type="Label" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer/HFlowContainer2" unique_id=1306131611]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.3529412, 0.75686276, 0.96862745, 1)
-theme_override_font_sizes/font_size = 136
-text = "O"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=137985507]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 36
-text = "WINNER!"
-horizontal_alignment = 1
-
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=743653863]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme_override_constants/h_separation = 30
-alignment = 1
-
-[node name="PlayerX" type="Button" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer/HFlowContainer" unique_id=1830640940]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "X"
-
-[node name="PlayerO" type="Button" parent="MarginContainer/PanelContainer/CenterContainer/VBoxContainer/HFlowContainer" unique_id=312154233]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "O
-"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1463980385]
-libraries/ = SubResource("AnimationLibrary_tup5k")
 
 [connection signal="gui_input" from="MarginContainer/PanelContainer" to="." method="_on_panel_container_gui_input"]
