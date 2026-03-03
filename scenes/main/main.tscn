@@ -8,6 +8,7 @@
 
 [node name="Main" type="Node" unique_id=553093518]
 script = ExtResource("1_k2fmo")
+game_menu_scene = ExtResource("3_l3cfh")
 
 [node name="GameManager" parent="." unique_id=244457677 instance=ExtResource("1_iuonh")]
 
@@ -16,9 +17,5 @@ script = ExtResource("1_k2fmo")
 [node name="GameUi" parent="." unique_id=209699471 node_paths=PackedStringArray("game_manager") instance=ExtResource("1_hyk8p")]
 game_manager = NodePath("../GameManager")
 
-[node name="GameMenu" parent="." unique_id=1896866833 instance=ExtResource("3_l3cfh")]
-visible = false
-
 [connection signal="game_draw" from="GameManager" to="." method="_on_game_manager_game_draw"]
 [connection signal="game_over" from="GameManager" to="." method="_on_game_manager_game_over"]
-[connection signal="start_game" from="GameMenu" to="." method="_on_game_menu_start_game"]

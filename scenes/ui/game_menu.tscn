@@ -5,7 +5,6 @@
 
 [node name="GameMenu" type="CanvasLayer" unique_id=1896866833]
 script = ExtResource("1_5s0hc")
-game_over_message_scene = ExtResource("2_tup5k")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1763147287]
 anchors_preset = 15
@@ -20,6 +19,10 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer" unique_id=27314204]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GameOverMessage" parent="MarginContainer/PanelContainer/CenterContainer" unique_id=596680548 instance=ExtResource("2_tup5k")]
 unique_name_in_owner = true
 layout_mode = 2
 
