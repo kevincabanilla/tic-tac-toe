@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dd7p321ytiu8f"]
 
-[ext_resource type="Script" uid="uid://uvptdppb86lj" path="res://scenes/ui/game_over_message.gd" id="1_akquj"]
+[ext_resource type="Script" uid="uid://uvptdppb86lj" path="res://scenes/game_objects/game_over_message/game_over_message.gd" id="1_akquj"]
 
 [sub_resource type="Animation" id="Animation_osycc"]
 length = 0.001
