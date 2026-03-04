@@ -15,8 +15,10 @@ func create_game_menu_instance() -> GameMenu:
 func _on_game_manager_game_over(winner: Enums.Player) -> void:
 	score_manager.add_score(winner)
 	game_ui.update_score(score_manager.get_player_x_score(), score_manager.get_player_o_score())
+	get_viewport().gui_disable_input = true
 	await game_ui.display_cross_line()
 	create_game_menu_instance().show_winner(winner)
+	get_viewport().gui_disable_input = false
 
 
 func _on_game_manager_game_draw() -> void:

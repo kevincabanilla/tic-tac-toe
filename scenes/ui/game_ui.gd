@@ -72,7 +72,6 @@ func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
 	change_player(game_manager.current_player)
 
 func display_cross_line() -> void:
-	get_viewport().gui_disable_input = true
 	var result_index := game_manager.get_result_index().split("|")
 	print(result_index)
 	if result_index.size() != 2:
@@ -93,5 +92,4 @@ func display_cross_line() -> void:
 	cross_line_instance.end_point = get_pivot_global_position(btns[index_2[0]][index_2[1]]) #Vector2(380, 380)
 	add_child(cross_line_instance)
 	await cross_line_instance.tween_animation.finished
-	get_viewport().gui_disable_input = false
 	
