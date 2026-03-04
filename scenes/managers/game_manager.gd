@@ -42,3 +42,19 @@ func initialize() -> void:
 	anti_diag = 0
 	moves = 0
 	#current_player = (current_player if current_player != null else Enums.Player.X)
+
+func get_result_index() -> String:
+	for index in range(rows.size()):
+		if abs(rows[index]) == 3:
+			return "%s:0|%s:2" % [index, index]
+	
+	for index in range(cols.size()):
+		if abs(cols[index]) == 3:
+			return "0:%s|2:%s" % [index, index]
+	
+	if abs(main_diag) == 3:
+		return "0:0|2:2"
+	elif abs(anti_diag) == 3:
+		return "0:2|2:0"
+	else:
+		return ""
