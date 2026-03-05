@@ -87,7 +87,7 @@ func display_cross_line() -> void:
 	]
 	
 	cross_line_instance = cross_line_scene.instantiate() as CrossLine
-	cross_line_instance.duration = 0.5
+	cross_line_instance.duration = 0.4
 	cross_line_instance.start_point = get_pivot_global_position(btns[index_1[0]][index_1[1]]) #Vector2.ZERO
 	cross_line_instance.end_point = get_pivot_global_position(btns[index_2[0]][index_2[1]]) #Vector2(380, 380)
 	add_child(cross_line_instance)
