@@ -24,6 +24,7 @@ layout_mode = 2
 
 [node name="GameOverMessage" parent="MarginContainer/PanelContainer/CenterContainer" unique_id=596680548 instance=ExtResource("2_tup5k")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [connection signal="gui_input" from="MarginContainer/PanelContainer" to="." method="_on_panel_container_gui_input"]
