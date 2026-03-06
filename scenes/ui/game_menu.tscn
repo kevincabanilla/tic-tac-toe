@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8y1snlyqkspj"]
 
 [ext_resource type="Script" uid="uid://87mkkkeused" path="res://scenes/ui/game_menu.gd" id="1_5s0hc"]
-[ext_resource type="PackedScene" uid="uid://dd7p321ytiu8f" path="res://scenes/ui/game_over_message.tscn" id="2_tup5k"]
+[ext_resource type="PackedScene" uid="uid://dd7p321ytiu8f" path="res://scenes/game_objects/game_over_message/game_over_message.tscn" id="2_tup5k"]
 
 [node name="GameMenu" type="CanvasLayer" unique_id=1896866833]
 script = ExtResource("1_5s0hc")
@@ -24,6 +24,7 @@ layout_mode = 2
 
 [node name="GameOverMessage" parent="MarginContainer/PanelContainer/CenterContainer" unique_id=596680548 instance=ExtResource("2_tup5k")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [connection signal="gui_input" from="MarginContainer/PanelContainer" to="." method="_on_panel_container_gui_input"]

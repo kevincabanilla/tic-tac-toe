@@ -6,15 +6,11 @@ class_name GameMenu
 signal start_game()
 
 func show_winner(winner: Enums.Player) -> void:
-	game_over_msg.msg_label.text = "WINNER!"
-	game_over_msg.x_label.visible = winner == Enums.Player.X
-	game_over_msg.o_label.visible = winner == Enums.Player.O
+	await game_over_msg.play_win_animation(winner)	
 	
 
 func show_draw() -> void:
-	game_over_msg.msg_label.text = "DRAW!"
-	game_over_msg.x_label.visible = true
-	game_over_msg.o_label.visible = true
+	await game_over_msg.play_draw_animation()
 
 
 func _on_panel_container_gui_input(event: InputEvent) -> void:
