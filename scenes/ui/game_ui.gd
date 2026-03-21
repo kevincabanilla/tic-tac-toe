@@ -14,6 +14,7 @@ class_name GameUi
 @onready var btn_6: Button = %Btn6
 @onready var btn_7: Button = %Btn7
 @onready var btn_8: Button = %Btn8
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var current_player: Enums.Player
 var player_symbol = ""
@@ -90,6 +91,15 @@ func display_cross_line() -> void:
 	cross_line_instance.duration = 0.6
 	cross_line_instance.start_point = get_pivot_global_position(btns[index_1[0]][index_1[1]]) #Vector2.ZERO
 	cross_line_instance.end_point = get_pivot_global_position(btns[index_2[0]][index_2[1]]) #Vector2(380, 380)
-	add_child(cross_line_instance)
+	$PanelContainer.add_child(cross_line_instance)
 	await cross_line_instance.tween_animation.finished
 	
+
+func blur() -> void:
+	animation_player.play("end_screen")
+	await animation_player.animation_finished
+
+
+func restart() -> void:
+	initialize()
+	animation_player.play_backwards("end_screen")

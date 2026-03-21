@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui.gd" id="1_0uh32"]
 [ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game-button.tscn" id="1_c63vp"]
 [ext_resource type="PackedScene" uid="uid://c2npyxciw6kff" path="res://scenes/game_objects/cross_line/cross_line.tscn" id="2_o4qo6"]
+[ext_resource type="Shader" uid="uid://dsbewu18wpbkl" path="res://scenes/ui/game-ui.gdshader" id="4_xbia5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uh32"]
 bg_color = Color(0, 0.12941177, 0.007843138, 1)
@@ -11,6 +12,10 @@ bg_color = Color(0, 0.12941177, 0.007843138, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4qo6"]
 bg_color = Color(0, 0.8117647, 0.22352941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w06ra"]
+shader = ExtResource("4_xbia5")
+shader_parameter/lod = 0.0
 
 [sub_resource type="Animation" id="Animation_xbia5"]
 length = 0.001
@@ -25,6 +30,59 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(468, 441)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ca8iv"]
+resource_name = "end_screen"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 2.000000095]
 }
 
 [sub_resource type="Animation" id="Animation_w06ra"]
@@ -46,6 +104,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ca8iv"]
 _data = {
 &"RESET": SubResource("Animation_xbia5"),
+&"end_screen": SubResource("Animation_ca8iv"),
 &"grid_animation": SubResource("Animation_w06ra")
 }
 
@@ -132,17 +191,16 @@ text = ""
 [node name="Btn3" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=860498333 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
+text = "X"
 
 [node name="Btn4" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=2050150312 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
 
 [node name="Btn5" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=105690544 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
+text = "X"
 
 [node name="Btn6" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=308798299 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
@@ -158,6 +216,15 @@ text = ""
 unique_name_in_owner = true
 layout_mode = 2
 text = ""
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=378704609]
+visible = false
+material = SubResource("ShaderMaterial_w06ra")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1754780420]
 libraries/ = SubResource("AnimationLibrary_ca8iv")
