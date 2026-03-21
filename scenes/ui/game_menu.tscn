@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=55726886]
-self_modulate = Color(0.3515629, 0.3515629, 0.35156286, 0.9019608)
+self_modulate = Color(0.3529412, 0.3529412, 0.3529412, 0)
 layout_mode = 2
 mouse_filter = 1
 

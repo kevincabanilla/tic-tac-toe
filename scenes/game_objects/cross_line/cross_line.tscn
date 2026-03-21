@@ -4,7 +4,7 @@
 
 [node name="CrossLine" type="Line2D" unique_id=1828969850]
 points = PackedVector2Array(20, 20, 480, 480)
-default_color = Color(0.7388653, 0.1892359, 0.15114692, 1)
+default_color = Color(0, 1, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2

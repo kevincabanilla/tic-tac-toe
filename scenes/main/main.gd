@@ -20,16 +20,18 @@ func _on_game_manager_game_over(winner: Enums.Player) -> void:
 	game_ui.update_score(score_manager.get_player_x_score(), score_manager.get_player_o_score())
 	disable_all_input(true)
 	await game_ui.display_cross_line()
+	await game_ui.blur()
 	await create_game_menu_instance().show_winner(winner, game_manager.get_result_pivot_location())
 	disable_all_input(false)
 
 
 func _on_game_manager_game_draw() -> void:
 	disable_all_input(true)
+	await game_ui.blur()
 	await  create_game_menu_instance().show_draw()
 	disable_all_input(false)
 
 
 func _on_game_menu_start_game() -> void:
 	game_manager.initialize()
-	game_ui.initialize()
+	game_ui.restart()
