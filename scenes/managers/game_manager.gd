@@ -58,3 +58,16 @@ func get_result_index() -> String:
 		return "0:2|2:0"
 	else:
 		return ""
+
+
+func get_result_pivot_location() -> Enums.PivotLocation:
+	if (abs(rows[0]) == 3):
+		return Enums.PivotLocation.Top
+	elif (abs(rows[2]) == 3):
+		return Enums.PivotLocation.Bottom
+	elif (abs(cols[0]) == 3):
+		return Enums.PivotLocation.Left
+	elif (abs(cols[2]) == 3):
+		return Enums.PivotLocation.Right
+	else:
+		return Enums.PivotLocation.Center

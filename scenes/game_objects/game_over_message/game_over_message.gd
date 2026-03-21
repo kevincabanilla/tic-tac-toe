@@ -14,8 +14,9 @@ func _ready() -> void:
 	#play_draw_animation()
 
 
-func play_win_animation(winner: Enums.Player) -> void:
+func play_win_animation(winner: Enums.Player, pivot_loc: Enums.PivotLocation) -> void:
 	#await get_tree().create_timer(3.0).timeout
+	set_pivot_location(pivot_loc)
 	msg_label.text = "WINNER!"
 	x_label.visible = winner == Enums.Player.X
 	o_label.visible = winner == Enums.Player.O

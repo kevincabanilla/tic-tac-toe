@@ -1,12 +1,12 @@
 extends CanvasLayer
 class_name GameMenu
 
-@onready var game_over_msg = %GameOverMessage
+@onready var game_over_msg: GameOverMessage = %GameOverMessage
 
 signal start_game()
 
-func show_winner(winner: Enums.Player) -> void:
-	await game_over_msg.play_win_animation(winner)	
+func show_winner(winner: Enums.Player, pivot_loc: Enums.PivotLocation) -> void:
+	await game_over_msg.play_win_animation(winner, pivot_loc)
 	
 
 func show_draw() -> void:
