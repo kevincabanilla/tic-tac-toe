@@ -96,9 +96,8 @@ func display_cross_line() -> void:
 
 
 func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
-	var color = (Color("#5bd170") if game_manager.current_player == Enums.Player.X else Color("5ac1f7ff"))
-	btn.add_theme_color_override("font_disabled_color", color)
 	btn.text = "X" if current_player == Enums.Player.X else "O"
+	btn.theme_type_variation = btn.text + "Button"
 	btn.play_animation()
 	btn.disabled = true
 	change_player(game_manager.get_next_player(row, col))
