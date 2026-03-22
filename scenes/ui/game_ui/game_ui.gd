@@ -16,8 +16,9 @@ class_name GameUi
 @onready var btn_8: Button = %Btn8
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ui_controls: UiControls = %UiControls
+@onready var panel_container: PanelContainer = %PanelContainer
 
-var current_player: Enums.Player
+var current_player := Enums.Player.X
 var cross_line_instance: CrossLine
 
 
@@ -51,17 +52,25 @@ func get_pivot_global_position(control: Control) -> Vector2:
 	#return control.get_global_transform() * control.pivot_offset # use this if pivot is not centered
 	return control.global_position + control.size / 2 # use this if pivot is already centered
 
+
 func change_player(player: Enums.Player) -> void:
 	current_player = player
 	ui_controls.change_player(current_player)
+	
 
-func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
-	var color = (Color("#5bd170") if game_manager.current_player == Enums.Player.X else Color("5ac1f7ff"))
-	btn.add_theme_color_override("font_disabled_color", color)
-	btn.text = "X" if current_player == Enums.Player.X else "O"
-	btn.play_animation()
-	btn.disabled = true
-	change_player(game_manager.get_next_player(row, col))
+func blur() -> void:
+	animation_player.play("blur")
+	#await animation_player.animation_finished
+
+
+func restart() -> void:
+	initialize()
+	animation_player.play_backwards("blur")
+
+
+func add_child_to_panel_container(node: Node) -> void:
+	panel_container.add_child(node)
+
 
 func display_cross_line() -> void:
 	var result_index := game_manager.get_result_index().split("|")
@@ -84,13 +93,12 @@ func display_cross_line() -> void:
 	cross_line_instance.end_point = get_pivot_global_position(btns[index_2[0]][index_2[1]]) #Vector2(380, 380)
 	$PanelContainer.add_child(cross_line_instance)
 	await cross_line_instance.tween_animation.finished
-	
-
-func blur() -> void:
-	animation_player.play("blur")
-	#await animation_player.animation_finished
 
 
-func restart() -> void:
-	initialize()
-	animation_player.play_backwards("blur")
+func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
+	var color = (Color("#5bd170") if game_manager.current_player == Enums.Player.X else Color("5ac1f7ff"))
+	btn.add_theme_color_override("font_disabled_color", color)
+	btn.text = "X" if current_player == Enums.Player.X else "O"
+	btn.play_animation()
+	btn.disabled = true
+	change_player(game_manager.get_next_player(row, col))
