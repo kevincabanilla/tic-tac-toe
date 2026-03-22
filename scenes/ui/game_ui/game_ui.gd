@@ -63,9 +63,13 @@ func blur() -> void:
 	#await animation_player.animation_finished
 
 
+func unblur() -> void:	
+	animation_player.play_backwards("blur")
+
+
 func restart() -> void:
 	initialize()
-	animation_player.play_backwards("blur")
+	unblur()
 
 
 func add_child_to_panel_container(node: Node) -> void:
