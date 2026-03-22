@@ -1,34 +1,49 @@
 [gd_scene format=3 uid="uid://o1a3fwvfgsfk"]
 
 [ext_resource type="Script" uid="uid://yj0xal6pf6me" path="res://scenes/ui/ui_controls/ui_controls.gd" id="1_wm3o0"]
+[ext_resource type="Texture2D" uid="uid://bt8b8u16kxs2w" path="res://assets/icons/menu_64dp.png" id="2_wm3o0"]
 
-[node name="UiControls" type="HFlowContainer" unique_id=774020687]
+[node name="UiControls" type="GridContainer" unique_id=215977796]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_bottom = 66.0
 grow_horizontal = 2
+columns = 2
 script = ExtResource("1_wm3o0")
 
-[node name="TurnLabel" type="Label" parent="." unique_id=351961607]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=314938601]
+layout_mode = 2
+
+[node name="TurnLabel" type="Label" parent="VBoxContainer" unique_id=351961607]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Player %s turn"
 
-[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=751212462]
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer" unique_id=751212462]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 
-[node name="XScoreLabel" type="Label" parent="HFlowContainer" unique_id=737694335]
+[node name="XScoreLabel" type="Label" parent="VBoxContainer/HFlowContainer" unique_id=737694335]
 unique_name_in_owner = true
 layout_mode = 2
 text = "X: 0"
 
-[node name="Label" type="Label" parent="HFlowContainer" unique_id=922597229]
+[node name="Label" type="Label" parent="VBoxContainer/HFlowContainer" unique_id=922597229]
 layout_mode = 2
 text = " | "
 
-[node name="OScoreLabel" type="Label" parent="HFlowContainer" unique_id=370176606]
+[node name="OScoreLabel" type="Label" parent="VBoxContainer/HFlowContainer" unique_id=370176606]
 unique_name_in_owner = true
 layout_mode = 2
 text = "O: 0"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1415748291]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="HFlowContainer" unique_id=2065730331]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_type_variation = &"IconButton"
+theme_override_icons/icon = ExtResource("2_wm3o0")

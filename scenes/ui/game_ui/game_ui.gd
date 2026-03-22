@@ -87,10 +87,10 @@ func display_cross_line() -> void:
 	
 
 func blur() -> void:
-	animation_player.play("end_screen")
-	await animation_player.animation_finished
+	animation_player.play("blur")
+	#await animation_player.animation_finished
 
 
 func restart() -> void:
 	initialize()
-	animation_player.play_backwards("end_screen")
+	animation_player.play_backwards("blur")

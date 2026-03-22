@@ -1,4 +1,4 @@
-class_name UiControls extends HFlowContainer
+class_name UiControls extends Control
 
 
 func _ready() -> void:

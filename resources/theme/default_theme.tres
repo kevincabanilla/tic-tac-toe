@@ -1,0 +1,27 @@
+[gd_resource type="Theme" format=3 uid="uid://bctcy3srhnubg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi5eh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixv33"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5ytv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ltdrk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+default_font_size = 24
+IconButton/base_type = &"Button"
+IconButton/colors/icon_focus_color = Color(0, 1, 0.22352941, 1)
+IconButton/colors/icon_hover_color = Color(0, 1, 0.22352941, 1)
+IconButton/colors/icon_normal_color = Color(0, 0.8117647, 0.22352941, 1)
+IconButton/colors/icon_pressed_color = Color(0, 0.57254905, 0.22352941, 1)
+IconButton/styles/focus = SubResource("StyleBoxFlat_bi5eh")
+IconButton/styles/hover = SubResource("StyleBoxFlat_ixv33")
+IconButton/styles/normal = SubResource("StyleBoxFlat_k5ytv")
+IconButton/styles/pressed = SubResource("StyleBoxFlat_ltdrk")
+Label/colors/font_outline_color = Color(0, 0.8117647, 0.22352941, 1)
+Label/constants/outline_size = 4

@@ -19,14 +19,14 @@ func _on_game_manager_game_over(winner: Enums.Player) -> void:
 	GameData.add_score(winner)
 	disable_all_input(true)
 	await game_ui.display_cross_line()
-	await game_ui.blur()
+	game_ui.blur()
 	await create_game_menu_instance().show_winner(winner, game_manager.get_result_pivot_location())
 	disable_all_input(false)
 
 
 func _on_game_manager_game_draw() -> void:
 	disable_all_input(true)
-	await game_ui.blur()
+	game_ui.blur()
 	await  create_game_menu_instance().show_draw()
 	disable_all_input(false)
 

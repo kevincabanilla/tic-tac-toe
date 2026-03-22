@@ -21,9 +21,14 @@ GameData="*uid://cib2el3eyko08"
 
 [display]
 
-window/size/viewport_width=500
-window/size/viewport_height=500
+window/size/viewport_width=600
+window/size/viewport_height=600
 window/size/resizable=false
+
+[gui]
+
+theme/custom="uid://bctcy3srhnubg"
+theme/custom_font="uid://bvdofhxde2vg0"
 
 [input]
 
