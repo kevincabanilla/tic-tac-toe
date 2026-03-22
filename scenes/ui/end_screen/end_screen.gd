@@ -1,5 +1,5 @@
-extends CanvasLayer
-class_name EndScreen
+class_name EndScreen extends MarginContainer
+
 
 @onready var game_over_msg: GameOverMessage = %GameOverMessage
 
@@ -13,7 +13,7 @@ func show_draw() -> void:
 	await game_over_msg.play_draw_animation()
 
 
-func _on_panel_container_gui_input(event: InputEvent) -> void:
+func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
 		await game_over_msg.close()
 		start_game.emit()
