@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://o1a3fwvfgsfk"]
+
+[ext_resource type="Script" uid="uid://yj0xal6pf6me" path="res://scenes/ui/ui_controls/ui_controls.gd" id="1_wm3o0"]
+
+[node name="UiControls" type="HFlowContainer" unique_id=774020687]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("1_wm3o0")
+
+[node name="TurnLabel" type="Label" parent="." unique_id=351961607]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player %s turn"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=751212462]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="XScoreLabel" type="Label" parent="HFlowContainer" unique_id=737694335]
+unique_name_in_owner = true
+layout_mode = 2
+text = "X: 0"
+
+[node name="Label" type="Label" parent="HFlowContainer" unique_id=922597229]
+layout_mode = 2
+text = " | "
+
+[node name="OScoreLabel" type="Label" parent="HFlowContainer" unique_id=370176606]
+unique_name_in_owner = true
+layout_mode = 2
+text = "O: 0"

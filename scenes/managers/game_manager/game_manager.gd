@@ -15,7 +15,7 @@ func _ready() -> void:
 	initialize()
 	print("game_manager initialized.")
 
-func determine_winner(row:int, col:int) -> void:
+func get_next_player(row:int, col:int) -> Enums.Player:
 	var value = current_player as int
 	rows[row] += value
 	cols[col] += value
@@ -33,6 +33,7 @@ func determine_winner(row:int, col:int) -> void:
 		game_draw.emit()
 	#else:
 	current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
+	return current_player
 
 
 func initialize() -> void:

@@ -16,8 +16,7 @@ func disable_all_input(disable: bool) -> void:
 	get_viewport().gui_disable_input = disable
 
 func _on_game_manager_game_over(winner: Enums.Player) -> void:
-	score_manager.add_score(winner)
-	game_ui.update_score(score_manager.get_player_x_score(), score_manager.get_player_o_score())
+	GameData.add_score(winner)
 	disable_all_input(true)
 	await game_ui.display_cross_line()
 	await game_ui.blur()
