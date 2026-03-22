@@ -8,8 +8,6 @@ var main_diag: int
 var anti_diag: int
 var moves: int
 
-signal game_over(winner: Enums.Player)
-signal game_draw()
 
 func _ready() -> void:
 	initialize()
@@ -28,9 +26,9 @@ func get_next_player(row:int, col:int) -> Enums.Player:
 	moves += 1
 		
 	if abs(rows[row]) == 3 or abs(cols[col]) == 3 or abs(main_diag) == 3 or abs(anti_diag) == 3:
-		game_over.emit(current_player)
+		GameEvents.game_over.emit(current_player)
 	elif moves == 9:
-		game_draw.emit()
+		GameEvents.game_draw.emit()
 	#else:
 	current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
 	return current_player
