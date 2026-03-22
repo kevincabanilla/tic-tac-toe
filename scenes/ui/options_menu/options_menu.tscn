@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bnqvkh10wknku"]
+
+[ext_resource type="Script" uid="uid://cfxj0r4mnobrg" path="res://scenes/ui/options_menu/options_menu.gd" id="1_7iv5r"]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1717228249]
+script = ExtResource("1_7iv5r")
+
+[node name="Panel" type="Panel" parent="." unique_id=1269216498]
+self_modulate = Color(0, 1, 0.22352941, 0.5882353)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2054506126]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1457058895]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=911601224]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1068121388]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 36
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1104636275]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Mode"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=164689854]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "2 Player"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1409272748]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "AI Difficulty"
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=802530199]
+layout_mode = 2
+alignment = 1
+selected = 1
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1621942812]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Allow Draw"
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1049896635]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=164963784]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"

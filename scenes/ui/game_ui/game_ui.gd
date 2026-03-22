@@ -59,11 +59,13 @@ func change_player(player: Enums.Player) -> void:
 	
 
 func blur() -> void:
+	ui_controls.enable(false)
 	animation_player.play("blur")
 	#await animation_player.animation_finished
 
 
 func unblur() -> void:	
+	ui_controls.enable(true)
 	animation_player.play_backwards("blur")
 
 

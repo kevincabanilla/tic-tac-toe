@@ -42,8 +42,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Button" type="Button" parent="HFlowContainer" unique_id=2065730331]
+[node name="MenuButton" type="Button" parent="HFlowContainer" unique_id=2065730331]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"IconButton"
 theme_override_icons/icon = ExtResource("2_wm3o0")
+flat = true
+
+[connection signal="pressed" from="HFlowContainer/MenuButton" to="." method="_on_menu_button_pressed"]

@@ -17,5 +17,13 @@ func change_player(player: Enums.Player) -> void:
 	%TurnLabel.text = "Player %s turn." % ("X" if player == Enums.Player.X else "O")
 
 
+func enable(is_enabled: bool) -> void:
+	%MenuButton.disabled = !is_enabled
+
+
 func _on_player_score_updated(player: Enums.Player, new_score: int) -> void:
 	update_score(player, new_score)
+
+
+func _on_menu_button_pressed() -> void:
+	GameEvents.open_options_menu.emit()

@@ -174,15 +174,18 @@ text = ""
 [node name="Btn3" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=860498333 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"XButton"
 text = "X"
 
 [node name="Btn4" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=2050150312 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"OButton"
 
 [node name="Btn5" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=105690544 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"XButton"
 text = "X"
 
 [node name="Btn6" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=308798299 instance=ExtResource("1_c63vp")]
