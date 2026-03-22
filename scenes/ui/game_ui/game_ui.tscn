@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b3rs54djx0x63"]
 
-[ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui.gd" id="1_0uh32"]
-[ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game-button.tscn" id="1_c63vp"]
+[ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui/game_ui.gd" id="1_0uh32"]
+[ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game_button/game_button.tscn" id="1_c63vp"]
 [ext_resource type="PackedScene" uid="uid://c2npyxciw6kff" path="res://scenes/game_objects/cross_line/cross_line.tscn" id="2_o4qo6"]
-[ext_resource type="Shader" uid="uid://dsbewu18wpbkl" path="res://scenes/ui/game-ui.gdshader" id="4_xbia5"]
+[ext_resource type="Shader" uid="uid://dsbewu18wpbkl" path="res://scenes/ui/game_ui/game_ui.gdshader" id="4_xbia5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uh32"]
 bg_color = Color(0, 0.12941177, 0.007843138, 1)

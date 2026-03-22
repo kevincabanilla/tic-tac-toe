@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name GameMenu
+class_name EndScreen
 
 @onready var game_over_msg: GameOverMessage = %GameOverMessage
 

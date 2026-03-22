@@ -6,8 +6,8 @@ extends Node
 @onready var score_manager = $ScoreManager
 @onready var game_ui = $GameUi
 
-func create_game_menu_instance() -> GameMenu:
-	var game_menu_instance = game_menu_scene.instantiate() as  GameMenu
+func create_game_menu_instance() -> EndScreen:
+	var game_menu_instance = game_menu_scene.instantiate() as  EndScreen
 	game_menu_instance.start_game.connect(_on_game_menu_start_game)
 	add_child(game_menu_instance)
 	return game_menu_instance
