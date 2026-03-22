@@ -15,5 +15,6 @@ func show_draw() -> void:
 
 func _on_panel_container_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
+		await game_over_msg.close()
 		start_game.emit()
 		queue_free()
