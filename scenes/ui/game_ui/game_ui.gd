@@ -56,7 +56,7 @@ func get_pivot_global_position(control: Control) -> Vector2:
 func change_player(player: Enums.Player) -> void:
 	current_player = player
 	ui_controls.change_player(current_player)
-	
+
 
 func blur() -> void:
 	ui_controls.enable(false)
@@ -106,4 +106,25 @@ func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
 	btn.theme_type_variation = btn.text + "Button"
 	btn.play_animation()
 	btn.disabled = true
-	change_player(game_manager.get_next_player(row, col))
+	change_player(game_manager.make_move(row, col))
+	ai_make_move()
+	
+	
+
+func ai_make_move() -> void:
+	if (game_manager.is_game_over || current_player != Enums.Player.O):
+		return
+	
+	get_viewport().gui_disable_input = true
+	
+	var ai_move = GameAi.make_move(game_manager.board)
+	if (ai_move.is_empty()):
+		print("No AI moves left")
+		return
+	
+	var row = ai_move["row"]
+	var col = ai_move["col"]
+	_on_btn_pressed(row, col, get("btn_" + str((row * 3) + col)))
+	
+	get_viewport().gui_disable_input = false
+	

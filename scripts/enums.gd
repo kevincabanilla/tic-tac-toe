@@ -6,6 +6,11 @@ enum Player {
 	O = -1
 }
 
+enum Difficulty {
+	Easy,
+	Medium,
+	Hard
+}
 
 enum PivotLocation {
 	Top,

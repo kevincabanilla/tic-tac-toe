@@ -2,19 +2,21 @@ extends Node
 class_name GameManager
 
 var current_player: Enums.Player = Enums.Player.X
+var board: Array
 var rows: Array
 var cols: Array
 var main_diag: int
 var anti_diag: int
 var moves: int
-
+var is_game_over: bool
 
 func _ready() -> void:
 	initialize()
 	print("game_manager initialized.")
 
-func get_next_player(row:int, col:int) -> Enums.Player:
+func make_move(row:int, col:int) -> Enums.Player:
 	var value = current_player as int
+	board[row][col] = value
 	rows[row] += value
 	cols[col] += value
 	
@@ -26,8 +28,10 @@ func get_next_player(row:int, col:int) -> Enums.Player:
 	moves += 1
 		
 	if abs(rows[row]) == 3 or abs(cols[col]) == 3 or abs(main_diag) == 3 or abs(anti_diag) == 3:
+		is_game_over = true
 		GameEvents.game_over.emit(current_player)
 	elif moves == 9:
+		is_game_over = true
 		GameEvents.game_draw.emit()
 	#else:
 	current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
@@ -35,11 +39,17 @@ func get_next_player(row:int, col:int) -> Enums.Player:
 
 
 func initialize() -> void:
+	board = [
+		[0, 0, 0],
+		[0, 0, 0],
+		[0, 0, 0]
+	]
 	rows = [0,0,0]
 	cols = [0,0,0]
 	main_diag = 0
 	anti_diag = 0
 	moves = 0
+	is_game_over = false
 	#current_player = (current_player if current_player != null else Enums.Player.X)
 
 func get_result_index() -> String:

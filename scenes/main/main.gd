@@ -44,6 +44,7 @@ func _on_game_events_game_draw() -> void:
 func _on_end_screen_restart() -> void:
 	game_manager.initialize()
 	game_ui.restart()
+	game_ui.ai_make_move()
 
 
 func _on_game_events_open_options_menu() -> void:
