@@ -14,9 +14,11 @@ class_name GameUi
 @onready var btn_6: Button = %Btn6
 @onready var btn_7: Button = %Btn7
 @onready var btn_8: Button = %Btn8
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var ui_controls: UiControls = %UiControls
+@onready var panel_container: PanelContainer = %PanelContainer
 
-var current_player: Enums.Player
-var player_symbol = ""
+var current_player := Enums.Player.X
 var cross_line_instance: CrossLine
 
 
@@ -51,29 +53,33 @@ func get_pivot_global_position(control: Control) -> Vector2:
 	return control.global_position + control.size / 2 # use this if pivot is already centered
 
 
-func update_score(x_score: int, o_score: int) -> void:
-	%XScoreLabel.text = "X: %s" % x_score
-	%OScoreLabel.text = "O: %s" % o_score
-
-
 func change_player(player: Enums.Player) -> void:
 	current_player = player
-	player_symbol = "X" if current_player == Enums.Player.X else "O"
-	%TurnLabel.text = "Player %s turn." % ("X" if current_player == Enums.Player.X else "O")
+	ui_controls.change_player(current_player)
 
 
-func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
-	var color = (Color("#5bd170") if game_manager.current_player == Enums.Player.X else Color("5ac1f7ff"))
-	btn.add_theme_color_override("font_disabled_color", color)
-	btn.text = player_symbol
-	btn.play_animation()
-	btn.disabled = true
-	game_manager.determine_winner(row, col)
-	change_player(game_manager.current_player)
+func blur() -> void:
+	ui_controls.enable(false)
+	animation_player.play("blur")
+	#await animation_player.animation_finished
+
+
+func unblur() -> void:	
+	ui_controls.enable(true)
+	animation_player.play_backwards("blur")
+
+
+func restart() -> void:
+	initialize()
+	unblur()
+
+
+func add_child_to_panel_container(node: Node) -> void:
+	panel_container.add_child(node)
+
 
 func display_cross_line() -> void:
-	var result_index := game_manager.get_result_index().split("|")
-	print(result_index)
+	var result_index := game_manager.get_result_index().split("|")	
 	if result_index.size() != 2:
 		return
 	
@@ -87,9 +93,38 @@ func display_cross_line() -> void:
 	]
 	
 	cross_line_instance = cross_line_scene.instantiate() as CrossLine
-	cross_line_instance.duration = 0.4
+	cross_line_instance.duration = 0.6
 	cross_line_instance.start_point = get_pivot_global_position(btns[index_1[0]][index_1[1]]) #Vector2.ZERO
 	cross_line_instance.end_point = get_pivot_global_position(btns[index_2[0]][index_2[1]]) #Vector2(380, 380)
-	add_child(cross_line_instance)
+	$PanelContainer.add_child(cross_line_instance)
 	await cross_line_instance.tween_animation.finished
+
+
+func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
+	btn.text = "X" if current_player == Enums.Player.X else "O"
+	btn.theme_type_variation = btn.text + "Button"
+	btn.play_animation()
+	btn.disabled = true
+	change_player(game_manager.make_move(row, col))
+	if (GameData.mode == Enums.Mode.AI):
+		ai_make_move()
+	
+	
+
+func ai_make_move() -> void:
+	if (game_manager.is_game_over || current_player != Enums.Player.O):
+		return
+	
+	get_viewport().gui_disable_input = true
+	
+	var ai_move = GameAi.make_move(game_manager.board)
+	if (ai_move.is_empty()):
+		print("No AI moves left")
+		return
+	
+	var row = ai_move["row"]
+	var col = ai_move["col"]
+	_on_btn_pressed(row, col, get("btn_" + str((row * 3) + col)))
+	
+	get_viewport().gui_disable_input = false
 	

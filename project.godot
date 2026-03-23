@@ -15,11 +15,22 @@ run/main_scene="uid://dm5feshb4s0pj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameData="*uid://cib2el3eyko08"
+GameEvents="*uid://003gx7aogddn"
+GameAi="*uid://bt5aiwnufcbus"
+
 [display]
 
-window/size/viewport_width=500
-window/size/viewport_height=500
+window/size/viewport_width=600
+window/size/viewport_height=600
 window/size/resizable=false
+
+[gui]
+
+theme/custom="uid://bctcy3srhnubg"
+theme/custom_font="uid://bvdofhxde2vg0"
 
 [input]
 

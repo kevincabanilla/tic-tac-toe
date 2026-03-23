@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://8y1snlyqkspj"]
+
+[ext_resource type="Script" uid="uid://87mkkkeused" path="res://scenes/ui/end_screen/end_screen.gd" id="1_5s0hc"]
+[ext_resource type="PackedScene" uid="uid://dd7p321ytiu8f" path="res://scenes/game_objects/game_over_message/game_over_message.tscn" id="2_tup5k"]
+
+[node name="EndScreen" type="MarginContainer" unique_id=1763147287]
+process_mode = 3
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5s0hc")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=55726886]
+self_modulate = Color(0.3529412, 0.3529412, 0.3529412, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=27314204]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GameOverMessage" parent="PanelContainer/CenterContainer" unique_id=596680548 instance=ExtResource("2_tup5k")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

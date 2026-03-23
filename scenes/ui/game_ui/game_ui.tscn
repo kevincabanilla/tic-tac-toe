@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://b3rs54djx0x63"]
 
-[ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui.gd" id="1_0uh32"]
-[ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game-button.tscn" id="1_c63vp"]
+[ext_resource type="Script" uid="uid://d33orujn3hnqp" path="res://scenes/ui/game_ui/game_ui.gd" id="1_0uh32"]
+[ext_resource type="PackedScene" uid="uid://c5qlsm6g8yg7" path="res://scenes/ui/game_button/game_button.tscn" id="1_c63vp"]
 [ext_resource type="PackedScene" uid="uid://c2npyxciw6kff" path="res://scenes/game_objects/cross_line/cross_line.tscn" id="2_o4qo6"]
+[ext_resource type="PackedScene" uid="uid://o1a3fwvfgsfk" path="res://scenes/ui/ui_controls/ui_controls.tscn" id="3_8cfus"]
+[ext_resource type="Shader" uid="uid://dsbewu18wpbkl" path="res://scenes/ui/game_ui/game_ui.gdshader" id="4_xbia5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uh32"]
 bg_color = Color(0, 0.12941177, 0.007843138, 1)
@@ -11,6 +13,10 @@ bg_color = Color(0, 0.12941177, 0.007843138, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4qo6"]
 bg_color = Color(0, 0.8117647, 0.22352941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w06ra"]
+shader = ExtResource("4_xbia5")
+shader_parameter/lod = 0.0
 
 [sub_resource type="Animation" id="Animation_xbia5"]
 length = 0.001
@@ -24,29 +30,83 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(468, 441)]
+"values": [Vector2(568, 492)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ca8iv"]
+resource_name = "end_screen"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 2.000000095]
 }
 
 [sub_resource type="Animation" id="Animation_w06ra"]
 resource_name = "grid_animation"
-length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Borders:custom_minimum_size")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 0.5),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(468, 441)]
+"values": [Vector2(0, 0), Vector2(568, 492)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ca8iv"]
 _data = {
 &"RESET": SubResource("Animation_xbia5"),
-&"grid_animation": SubResource("Animation_w06ra")
+&"blur": SubResource("Animation_ca8iv"),
+&"expand_grid": SubResource("Animation_w06ra")
 }
 
 [node name="GameUi" type="CanvasLayer" unique_id=209699471]
@@ -71,36 +131,18 @@ theme_override_constants/margin_bottom = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1726796249]
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=173651554]
-layout_mode = 2
-
-[node name="XScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1125363999]
+[node name="UiControls" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1678979376 instance=ExtResource("3_8cfus")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "X: 0"
-
-[node name="OScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=619267789]
-unique_name_in_owner = true
-layout_mode = 2
-text = "O: 0"
-
-[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=2011159046]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="TurnLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/HFlowContainer" unique_id=1637222362]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Player %s turn"
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=910303959]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0uh32")
 
 [node name="Borders" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=613318241]
-custom_minimum_size = Vector2(468, 441)
+custom_minimum_size = Vector2(568, 492)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -132,17 +174,19 @@ text = ""
 [node name="Btn3" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=860498333 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
+theme_type_variation = &"XButton"
+text = "X"
 
 [node name="Btn4" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=2050150312 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
+theme_type_variation = &"OButton"
 
 [node name="Btn5" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=105690544 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
+theme_type_variation = &"XButton"
+text = "X"
 
 [node name="Btn6" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/GridContainer" unique_id=308798299 instance=ExtResource("1_c63vp")]
 unique_name_in_owner = true
@@ -159,6 +203,16 @@ unique_name_in_owner = true
 layout_mode = 2
 text = ""
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=378704609]
+visible = false
+material = SubResource("ShaderMaterial_w06ra")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1754780420]
 libraries/ = SubResource("AnimationLibrary_ca8iv")
-autoplay = &"grid_animation"
+autoplay = &"expand_grid"

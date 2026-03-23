@@ -2,49 +2,41 @@
 
 [ext_resource type="Script" uid="uid://uvptdppb86lj" path="res://scenes/game_objects/game_over_message/game_over_message.gd" id="1_akquj"]
 
-[node name="GameOverMessage" type="VBoxContainer" unique_id=596680548]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -134.0
-offset_right = 100.0
-offset_bottom = 134.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(100, 134)
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_constants/separation = 16
-alignment = 1
+[node name="GameOverMessage" type="BoxContainer" unique_id=1565843969]
+offset_right = 200.0
+offset_bottom = 221.0
+pivot_offset = Vector2(100, 110.5)
 script = ExtResource("1_akquj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1348233555]
+[node name="MainContainer" type="VBoxContainer" parent="." unique_id=1674081731]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer" unique_id=1348233555]
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="XLabel" type="Label" parent="HBoxContainer" unique_id=100834715]
+[node name="XLabel" type="Label" parent="MainContainer/HBoxContainer" unique_id=100834715]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.35686275, 0.81960785, 0.4392157, 1)
+theme_override_colors/font_outline_color = Color(0, 0.8117647, 0.22352941, 0)
 theme_override_font_sizes/font_size = 136
 text = "X"
 horizontal_alignment = 1
 
-[node name="OLabel" type="Label" parent="HBoxContainer" unique_id=504697076]
+[node name="OLabel" type="Label" parent="MainContainer/HBoxContainer" unique_id=504697076]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.3529412, 0.75686276, 0.96862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0.8117647, 0.22352941, 0)
 theme_override_font_sizes/font_size = 136
 text = "O"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="." unique_id=1674994309]
+[node name="Label" type="Label" parent="MainContainer" unique_id=1674994309]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
@@ -53,21 +45,21 @@ theme_override_font_sizes/font_size = 36
 text = "WINNER!"
 horizontal_alignment = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=658293206]
+[node name="HFlowContainer" type="HFlowContainer" parent="MainContainer" unique_id=658293206]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_constants/h_separation = 30
 alignment = 1
 
-[node name="PlayerX" type="Button" parent="HFlowContainer" unique_id=140529413]
+[node name="PlayerX" type="Button" parent="MainContainer/HFlowContainer" unique_id=140529413]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "X"
 
-[node name="PlayerO" type="Button" parent="HFlowContainer" unique_id=179001622]
+[node name="PlayerO" type="Button" parent="MainContainer/HFlowContainer" unique_id=179001622]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
