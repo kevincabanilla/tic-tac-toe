@@ -1,6 +1,5 @@
 extends Node
 
-var difficulty := Enums.Difficulty.Easy
 var win_combinations := [
 		[0,1,2], # top row
 		[3,4,5], # middle row
@@ -13,7 +12,7 @@ var win_combinations := [
 	]
 
 func make_move(board: Array) -> Dictionary:
-	match difficulty:
+	match GameData.difficulty:
 		Enums.Difficulty.Easy:
 			return _easy_move(board)
 		Enums.Difficulty.Medium:
@@ -26,13 +25,12 @@ func make_move(board: Array) -> Dictionary:
 
 func _easy_move(board: Array) -> Dictionary:
 	var empty_cells: Array[Dictionary] = []
-	print(board)
+	
 	for row in range(board.size()):
 		for col in range(board[row].size()):
 			if board[row][col] == 0:
 				empty_cells.append({"row": row, "col": col})
 
-	print(empty_cells)
 	if empty_cells.size() > 0:
 		var choice: Dictionary = empty_cells[randi() % empty_cells.size()]
 		return choice

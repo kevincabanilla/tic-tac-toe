@@ -79,8 +79,7 @@ func add_child_to_panel_container(node: Node) -> void:
 
 
 func display_cross_line() -> void:
-	var result_index := game_manager.get_result_index().split("|")
-	print(result_index)
+	var result_index := game_manager.get_result_index().split("|")	
 	if result_index.size() != 2:
 		return
 	
@@ -107,7 +106,8 @@ func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
 	btn.play_animation()
 	btn.disabled = true
 	change_player(game_manager.make_move(row, col))
-	ai_make_move()
+	if (GameData.mode == Enums.Mode.AI):
+		ai_make_move()
 	
 	
 
