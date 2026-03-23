@@ -6,10 +6,16 @@ enum Player {
 	O = -1
 }
 
+enum Mode {
+	AI,
+	TwoPlayer
+}
+
 enum Difficulty {
 	Easy,
 	Medium,
-	Hard
+	Hard,
+	Impossible
 }
 
 enum PivotLocation {
