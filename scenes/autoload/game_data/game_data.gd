@@ -21,20 +21,20 @@ func load_data() -> void:
 		return
 	
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
-	var save_data := file.get_var() as Dictionary
-	mode = save_data["mode"]
-	difficulty = save_data["difficulty"]
-	allow_draw = save_data["allow_draw"]
+	var game_data := file.get_var() as Dictionary
+	mode = game_data["mode"]
+	difficulty = game_data["difficulty"]
+	allow_draw = game_data["allow_draw"]
 
 
 func save_data() -> void:
-	var save_data := {
+	var game_data := {
 		"mode": mode,
 		"difficulty": difficulty,
 		"allow_draw": allow_draw
 	}
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
-	file.store_var(save_data)
+	file.store_var(game_data)
 
 
 func add_score(player: Enums.Player) -> void:

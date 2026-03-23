@@ -27,7 +27,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_uwpw1"]
@@ -60,7 +60,7 @@ offset_bottom = 150.0
 pivot_offset = Vector2(75, 75)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wueub")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_6rsl0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uwpw1")

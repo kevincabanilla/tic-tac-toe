@@ -12,6 +12,7 @@ func _ready() -> void:
 	GameEvents.open_options_menu.connect(_on_game_events_open_options_menu)
 	GameEvents.game_over.connect(_on_game_events_game_over)
 	GameEvents.game_draw.connect(_on_game_events_game_draw)
+	game_manager.reset_cell.connect(_on_game_manager_reset_cell)
 
 
 func create_end_screen_instance() -> EndScreen:
@@ -21,31 +22,30 @@ func create_end_screen_instance() -> EndScreen:
 	return end_screen_instance
 
 
-func disable_all_input(disable: bool) -> void:
-	get_viewport().gui_disable_input = disable
-
-
 func _on_game_events_game_over(winner: Enums.Player) -> void:
 	GameData.add_score(winner)
-	disable_all_input(true)
+	GameEvents.disable_all_input(true)
 	await game_ui.display_cross_line()
 	game_ui.blur()
 	await create_end_screen_instance().show_winner(winner, game_manager.get_result_pivot_location())
-	disable_all_input(false)
+	GameEvents.disable_all_input(false)
 
 
 func _on_game_events_game_draw() -> void:
-	disable_all_input(true)
+	GameEvents.disable_all_input(true)
 	game_ui.blur()
 	await  create_end_screen_instance().show_draw()
-	disable_all_input(false)
+	GameEvents.disable_all_input(false)
 
 
 func _on_end_screen_restart() -> void:
+	GameEvents.disable_all_input(true)
 	game_manager.initialize()
 	game_ui.restart()
-	if (GameData.mode == Enums.Mode.AI):
+	if (game_manager.current_player == Enums.Player.O && GameData.mode == Enums.Mode.AI):
 		game_ui.ai_make_move()
+	else:
+		get_tree().create_timer(0.5).timeout.connect(GameEvents.disable_all_input.bind(false)) # wait for animations to finished
 
 
 func _on_game_events_open_options_menu() -> void:
@@ -54,3 +54,5 @@ func _on_game_events_open_options_menu() -> void:
 	options_menu.close.connect(game_ui.unblur)
 	add_child(options_menu)
 	
+func _on_game_manager_reset_cell(index: int) -> void:
+	game_ui.reset_button(index)

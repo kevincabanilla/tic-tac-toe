@@ -9,33 +9,12 @@ var main_diag: int
 var anti_diag: int
 var moves: int
 var is_game_over: bool
+var cell_queue: Array[int]
+
+signal reset_cell(index: int)
 
 func _ready() -> void:
 	initialize()
-	print("game_manager initialized.")
-
-func make_move(row:int, col:int) -> Enums.Player:
-	var value = current_player as int
-	board[row][col] = value
-	rows[row] += value
-	cols[col] += value
-	
-	if row == col:
-		main_diag += value
-	if (row + col) == 2:
-		anti_diag += value
-	
-	moves += 1
-		
-	if abs(rows[row]) == 3 or abs(cols[col]) == 3 or abs(main_diag) == 3 or abs(anti_diag) == 3:
-		is_game_over = true
-		GameEvents.game_over.emit(current_player)
-	elif moves == 9:
-		is_game_over = true
-		GameEvents.game_draw.emit()
-	#else:
-	current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
-	return current_player
 
 
 func initialize() -> void:
@@ -49,8 +28,64 @@ func initialize() -> void:
 	main_diag = 0
 	anti_diag = 0
 	moves = 0
+	cell_queue = []
 	is_game_over = false
 	#current_player = (current_player if current_player != null else Enums.Player.X)
+	print("game_manager initialized.")
+
+
+func make_move(row:int, col:int) -> Enums.Player:
+	var value = current_player as int
+	board[row][col] = value
+	rows[row] += value
+	cols[col] += value
+	
+	if row == col:
+		main_diag += value
+	if (row + col) == 2:
+		anti_diag += value
+	
+	if !GameData.allow_draw:
+		update_queue(row, col, current_player)
+	else:
+		moves += 1
+	
+	if abs(rows[row]) == 3 or abs(cols[col]) == 3 or abs(main_diag) == 3 or abs(anti_diag) == 3:
+		is_game_over = true
+		GameEvents.game_over.emit(current_player)
+	elif moves == 9:
+		is_game_over = true
+		GameEvents.game_draw.emit()
+	
+	current_player = (Enums.Player.X if current_player == Enums.Player.O else Enums.Player.O)
+	return current_player
+
+
+func update_queue(row:int, col:int, player: Enums.Player) -> void:
+	if (GameData.allow_draw):
+		return
+		
+	cell_queue.push_back((row * 3) + col)
+	if (cell_queue.size() >= 7):
+		var reset_cell_index: int = cell_queue.pop_front()		
+		var reset_row := reset_cell_index / 3
+		var reset_col := reset_cell_index % 3
+		board[reset_row][reset_col] = 0
+		
+		var value: = player * -1 # Negate value
+		rows[reset_row] += value
+		cols[reset_col] += value
+		if reset_row == reset_col:
+			main_diag += value
+		if (reset_row + reset_col) == 2:
+			anti_diag += value
+		
+		#print("rows: " + str(rows))
+		#print("cols: " + str(cols))
+		#print("main_diag: " + str(main_diag))
+		#print("anti_diag: " + str(anti_diag))
+		reset_cell.emit(reset_cell_index)
+
 
 func get_result_index() -> String:
 	for index in range(rows.size()):
