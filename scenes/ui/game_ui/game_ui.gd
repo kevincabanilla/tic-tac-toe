@@ -23,6 +23,7 @@ var cross_line_instance: CrossLine
 
 
 func _ready() -> void:
+	GameEvents.disable_all_input(true) # will be enabled after grid animation
 	initialize()
 	print("game_ui initialized.")
 	btn_0.pressed.connect(_on_btn_pressed.bind(0,0, btn_0))
@@ -34,7 +35,11 @@ func _ready() -> void:
 	btn_6.pressed.connect(_on_btn_pressed.bind(2,0, btn_6))
 	btn_7.pressed.connect(_on_btn_pressed.bind(2,1, btn_7))
 	btn_8.pressed.connect(_on_btn_pressed.bind(2,2, btn_8))
-	#game_manager.game_over.connect(_on_game_manager_game_over)
+	game_manager.reset_cell.connect(_on_game_manager_reset_cell)
+
+
+func grid_animation_finished() -> void:
+	GameEvents.disable_all_input(false)
 
 
 func initialize() -> void:
@@ -43,9 +48,8 @@ func initialize() -> void:
 	
 	change_player(game_manager.current_player)
 	for button in btn_container.get_children():
-		if button is Button:
-			button.text = ""
-			button.disabled = false
+		if button is GameButton:
+			button.reset()
 
 
 func get_pivot_global_position(control: Control) -> Vector2:
@@ -64,7 +68,7 @@ func blur() -> void:
 	#await animation_player.animation_finished
 
 
-func unblur() -> void:	
+func unblur() -> void:
 	ui_controls.enable(true)
 	animation_player.play_backwards("blur")
 
@@ -100,23 +104,38 @@ func display_cross_line() -> void:
 	await cross_line_instance.tween_animation.finished
 
 
+func reset_button(index: int) -> void:
+	var btns = btn_container.get_children()
+	#if (btns.size() > index + 1):
+		#return
+	var btn = btns[index] as GameButton
+	btn.disabled = false
+	await btn.play_animation(true)
+	btn.text = ""
+
+
+func _on_game_manager_reset_cell(index: int) -> void:
+	reset_button(index)
+
+
 func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
+	if (!GameData.allow_draw):
+		game_manager.update_queue(row, col, current_player)
+	GameEvents.disable_all_input(true)
+	btn.disabled = true
 	btn.text = "X" if current_player == Enums.Player.X else "O"
 	btn.theme_type_variation = btn.text + "Button"
-	btn.play_animation()
-	btn.disabled = true
+	await btn.play_animation()
 	change_player(game_manager.make_move(row, col))
-	if (GameData.mode == Enums.Mode.AI):
-		ai_make_move()
-	
-	
+	if (!game_manager.is_game_over):
+		if (current_player == Enums.Player.O && GameData.mode == Enums.Mode.AI):
+			ai_make_move()
+		else:
+			GameEvents.disable_all_input(false)
+
 
 func ai_make_move() -> void:
-	if (game_manager.is_game_over || current_player != Enums.Player.O):
-		return
-	
-	get_viewport().gui_disable_input = true
-	
+	await get_tree().create_timer(0.3).timeout
 	var ai_move = GameAi.make_move(game_manager.board)
 	if (ai_move.is_empty()):
 		print("No AI moves left")
@@ -125,6 +144,4 @@ func ai_make_move() -> void:
 	var row = ai_move["row"]
 	var col = ai_move["col"]
 	_on_btn_pressed(row, col, get("btn_" + str((row * 3) + col)))
-	
-	get_viewport().gui_disable_input = false
 	

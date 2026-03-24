@@ -20,13 +20,13 @@ bg_color = Color(0, 0.57254905, 0.22352941, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71o3v"]
 bg_color = Color(0, 0.57254905, 0.22352941, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5ytv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi5eh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixv33"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5ytv"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ltdrk"]
@@ -60,6 +60,7 @@ IconButton/colors/icon_focus_color = Color(0, 1, 0.22352941, 1)
 IconButton/colors/icon_hover_color = Color(0, 1, 0.22352941, 1)
 IconButton/colors/icon_normal_color = Color(0, 0.8117647, 0.22352941, 1)
 IconButton/colors/icon_pressed_color = Color(0, 0.57254905, 0.22352941, 1)
+IconButton/styles/disabled = SubResource("StyleBoxFlat_k5ytv")
 IconButton/styles/focus = SubResource("StyleBoxFlat_bi5eh")
 IconButton/styles/hover = SubResource("StyleBoxFlat_ixv33")
 IconButton/styles/normal = SubResource("StyleBoxFlat_k5ytv")

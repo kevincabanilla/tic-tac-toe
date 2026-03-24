@@ -1,6 +1,6 @@
 class_name OptionsMenu extends CanvasLayer
 
-signal close
+signal close(restart: bool)
 
 @onready var mode_button: Button = %ModeButton
 @onready var difficulty_option_button: OptionButton = %DifficultyOptionButton
@@ -27,14 +27,18 @@ func initialize_options() -> void:
 			mode_button.text = "With a Friend"
 	difficulty_option_button.selected = Enums.Difficulty.values().find(GameData.difficulty)
 	allow_draw_check_box.button_pressed = GameData.allow_draw
-	update_difficulty_visibility()
+	update_options_visibility()
 
 
-func update_difficulty_visibility() -> void:
+func update_options_visibility() -> void:
 	var show_difficulty := GameData.mode == Enums.Mode.AI
 	difficulty_label.visible = show_difficulty
 	difficulty_option_button.visible = show_difficulty
-	
+	allow_draw_check_box.disabled = show_difficulty
+	if (GameData.mode == Enums.Mode.AI): # only change if mode switched to AI, otherwise keep the same value
+		allow_draw_check_box.button_pressed = true # enabled by default if AI mode
+	allow_draw_check_box.force_update_transform()
+	await get_tree().process_frame
 
 
 func _mode_button_on_pressed() -> void:
@@ -45,7 +49,7 @@ func _mode_button_on_pressed() -> void:
 		Enums.Mode.TwoPlayer:
 			mode_button.text = "AI"
 			GameData.mode = Enums.Mode.AI
-	update_difficulty_visibility()
+	update_options_visibility()
 
 
 func _on_difficulty_option_button_item_selected(index: int) -> void:
@@ -58,6 +62,8 @@ func _on_allow_draw_check_box_toggled(toggled_on: bool) -> void:
 
 
 func _on_close_button_pressed() -> void:
-	GameData.save_data()
-	close.emit()
+	var has_unsaved = GameData.has_unsaved_changes
+	if (has_unsaved):
+		GameData.save_data()
+	close.emit(has_unsaved)
 	queue_free()

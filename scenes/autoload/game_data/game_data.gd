@@ -2,9 +2,34 @@ extends Node
 
 const SAVE_FILE_PATH = "user://game.save"
 
-var mode := Enums.Mode.AI
-var difficulty := Enums.Difficulty.Medium
-var allow_draw := true
+var _game_data := {
+	"mode": Enums.Mode.AI,
+	"difficulty": Enums.Difficulty.Medium,
+	"allow_draw": true
+}
+var _loaded_data := {} # Readonly for saving purposes, do not modify.
+
+var mode: Enums.Mode:
+	set(value):
+		_game_data["mode"] = value
+	get:
+		return _game_data["mode"]
+
+var difficulty: Enums.Difficulty:
+	set(value):
+		_game_data["difficulty"] = value
+	get:
+		return _game_data["difficulty"]
+
+var allow_draw: bool:
+	set(value):
+		_game_data["allow_draw"] = value
+	get:
+		return _game_data["allow_draw"]
+
+var has_unsaved_changes: bool:
+	get:
+		return _game_data.hash() != _loaded_data.hash()
 
 var player_x_score := 0
 var player_o_score := 0
@@ -15,26 +40,25 @@ func _ready() -> void:
 	load_data()
 
 
-func load_data() -> void:
-	
+func load_data() -> void:	
 	if (!FileAccess.file_exists(SAVE_FILE_PATH)):
 		return
 	
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
-	var save_data := file.get_var() as Dictionary
-	mode = save_data["mode"]
-	difficulty = save_data["difficulty"]
-	allow_draw = save_data["allow_draw"]
-
+	_game_data = file.get_var()
+	_loaded_data = _game_data.duplicate(true)
+	update_copy()
 
 func save_data() -> void:
-	var save_data := {
-		"mode": mode,
-		"difficulty": difficulty,
-		"allow_draw": allow_draw
-	}
+	if !has_unsaved_changes:
+		return
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
-	file.store_var(save_data)
+	file.store_var(_game_data)
+	update_copy()
+
+
+func update_copy() -> void:
+	_loaded_data = _game_data.duplicate(true)
 
 
 func add_score(player: Enums.Player) -> void:
