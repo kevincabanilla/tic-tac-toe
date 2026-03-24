@@ -35,7 +35,7 @@ func _ready() -> void:
 	btn_6.pressed.connect(_on_btn_pressed.bind(2,0, btn_6))
 	btn_7.pressed.connect(_on_btn_pressed.bind(2,1, btn_7))
 	btn_8.pressed.connect(_on_btn_pressed.bind(2,2, btn_8))
-	#game_manager.game_over.connect(_on_game_manager_game_over)
+	game_manager.reset_cell.connect(_on_game_manager_reset_cell)
 
 
 func grid_animation_finished() -> void:
@@ -114,7 +114,13 @@ func reset_button(index: int) -> void:
 	btn.text = ""
 
 
+func _on_game_manager_reset_cell(index: int) -> void:
+	reset_button(index)
+
+
 func _on_btn_pressed(row: int, col: int, btn: GameButton) -> void:
+	if (!GameData.allow_draw):
+		game_manager.update_queue(row, col, current_player)
 	GameEvents.disable_all_input(true)
 	btn.disabled = true
 	btn.text = "X" if current_player == Enums.Player.X else "O"

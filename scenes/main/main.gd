@@ -12,7 +12,6 @@ func _ready() -> void:
 	GameEvents.open_options_menu.connect(_on_game_events_open_options_menu)
 	GameEvents.game_over.connect(_on_game_events_game_over)
 	GameEvents.game_draw.connect(_on_game_events_game_draw)
-	game_manager.reset_cell.connect(_on_game_manager_reset_cell)
 
 
 func create_end_screen_instance() -> EndScreen:
@@ -53,6 +52,3 @@ func _on_game_events_open_options_menu() -> void:
 	var options_menu: OptionsMenu = options_menu_scene.instantiate()
 	options_menu.close.connect(game_ui.unblur)
 	add_child(options_menu)
-	
-func _on_game_manager_reset_cell(index: int) -> void:
-	game_ui.reset_button(index)

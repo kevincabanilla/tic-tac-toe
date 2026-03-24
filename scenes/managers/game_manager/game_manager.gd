@@ -45,9 +45,7 @@ func make_move(row:int, col:int) -> Enums.Player:
 	if (row + col) == 2:
 		anti_diag += value
 	
-	if !GameData.allow_draw:
-		update_queue(row, col, current_player)
-	else:
+	if GameData.allow_draw:
 		moves += 1
 	
 	if abs(rows[row]) == 3 or abs(cols[col]) == 3 or abs(main_diag) == 3 or abs(anti_diag) == 3:
