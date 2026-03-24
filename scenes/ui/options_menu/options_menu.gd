@@ -1,6 +1,6 @@
 class_name OptionsMenu extends CanvasLayer
 
-signal close
+signal close(restart: bool)
 
 @onready var mode_button: Button = %ModeButton
 @onready var difficulty_option_button: OptionButton = %DifficultyOptionButton
@@ -62,6 +62,8 @@ func _on_allow_draw_check_box_toggled(toggled_on: bool) -> void:
 
 
 func _on_close_button_pressed() -> void:
-	GameData.save_data()
-	close.emit()
+	var has_unsaved = GameData.has_unsaved_changes
+	if (has_unsaved):
+		GameData.save_data()
+	close.emit(has_unsaved)
 	queue_free()

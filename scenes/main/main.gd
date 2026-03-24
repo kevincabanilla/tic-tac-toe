@@ -50,5 +50,12 @@ func _on_end_screen_restart() -> void:
 func _on_game_events_open_options_menu() -> void:
 	game_ui.blur()
 	var options_menu: OptionsMenu = options_menu_scene.instantiate()
-	options_menu.close.connect(game_ui.unblur)
+	options_menu.close.connect(_on_options_menu_close)
 	add_child(options_menu)
+
+
+func _on_options_menu_close(should_restart: bool) -> void:
+	if (should_restart):
+		_on_end_screen_restart()
+	else:
+		game_ui.unblur()
