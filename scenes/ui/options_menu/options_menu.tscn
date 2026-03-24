@@ -69,7 +69,8 @@ unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1621942812]
+[node name="AllowDrawLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1621942812]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -78,6 +79,7 @@ vertical_alignment = 1
 
 [node name="AllowDrawCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1049896635]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
