@@ -9,6 +9,7 @@ var options_menu_scene = preload("res://scenes/ui/options_menu/options_menu.tscn
 
 
 func _ready() -> void:
+	DisplayServer.window_set_min_size(Vector2(600, 600))
 	GameEvents.open_options_menu.connect(_on_game_events_open_options_menu)
 	GameEvents.game_over.connect(_on_game_events_game_over)
 	GameEvents.game_draw.connect(_on_game_events_game_draw)

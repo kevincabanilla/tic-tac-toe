@@ -13,7 +13,9 @@ config_version=5
 config/name="TicTacToe"
 run/main_scene="uid://dm5feshb4s0pj"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0, 0.12941177, 0.007843138, 1)
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1500
 
 [autoload]
 
@@ -30,7 +32,7 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=600
 window/size/viewport_height=600
-window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [gui]
 
@@ -52,3 +54,4 @@ left_click={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
