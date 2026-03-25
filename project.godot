@@ -33,6 +33,7 @@ gdscript/warnings/integer_division=0
 window/size/viewport_width=600
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [gui]
 
@@ -47,6 +48,10 @@ left_click={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -54,4 +59,5 @@ left_click={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
