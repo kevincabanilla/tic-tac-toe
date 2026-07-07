@@ -4,7 +4,7 @@ const SAVE_FILE_PATH = "user://game.save"
 
 var _game_data := {
 	"mode": Enums.Mode.AI,
-	"difficulty": Enums.Difficulty.Medium,
+	"difficulty": Enums.Difficulty.Impossible,
 	"allow_draw": true
 }
 var _loaded_data := {} # Readonly for saving purposes, do not modify.
