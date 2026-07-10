@@ -13,3 +13,6 @@ data_*/
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+web_export/
+.vercel
