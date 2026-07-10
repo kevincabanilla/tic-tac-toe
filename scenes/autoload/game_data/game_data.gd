@@ -4,8 +4,9 @@ const SAVE_FILE_PATH = "user://game.save"
 
 var _game_data := {
 	"mode": Enums.Mode.AI,
-	"difficulty": Enums.Difficulty.Impossible,
-	"allow_draw": true
+	"difficulty": Enums.Difficulty.Medium,
+	"allow_draw": true,
+	"fixed_setting": false
 }
 var _loaded_data := {} # Readonly for saving purposes, do not modify.
 
@@ -27,6 +28,12 @@ var allow_draw: bool:
 	get:
 		return _game_data["allow_draw"]
 
+var fixed_setting: bool:
+	set(value):
+		_game_data["fixed_setting"] = value
+	get:
+		return _game_data["fixed_setting"]
+
 var has_unsaved_changes: bool:
 	get:
 		return _game_data.hash() != _loaded_data.hash()
@@ -37,6 +44,15 @@ var player_o_score := 0
 signal player_score_updated(player: Enums.Player, new_score: int)
 
 func _ready() -> void:
+	if OS.has_feature("web"):
+		var mode_str = JavaScriptBridge.eval("new URLSearchParams(window.location.search).get('mode')")
+		match mode_str:
+			"AI":
+				_game_data["mode"] = Enums.Mode.AI
+				_game_data["difficulty"] = Enums.Difficulty.Impossible
+				_game_data["fixed_setting"] = true
+				return
+
 	load_data()
 
 

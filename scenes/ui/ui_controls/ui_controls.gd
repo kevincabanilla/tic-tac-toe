@@ -2,6 +2,7 @@ class_name UiControls extends Control
 
 
 func _ready() -> void:
+	%MenuButton.visible = !GameData.fixed_setting
 	GameData.player_score_updated.connect(_on_player_score_updated)
 
 
